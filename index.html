@@ -1,53 +1,47 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Exchange Rate Calculator</title>
-        <link href = "css/style.css" rel = "stylesheet" type = "text/css" />
-    </head>
-    <body>
-
-        <img src = "img/money.png" class = "money-img" alt = "money" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange Rate Calculator</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <main class="calculator">
+        <img src="img/money.png" class="money-img" alt="" />
         <h1>Exchange Rate Calculator</h1>
-        <p>Choose the currency and the amount to get the exchange rate</p>
+        <p>Choose currencies and enter an amount to see the latest exchange rate.</p>
 
-        <div class = "container">
-            <div class = "currency">
-                <select id = "currency-one">
-                    <option value = "AED">AED</option>
-                    <option value = "ARS">ARS</option>
-                    <option value = "AUD">AUD</option>
-                    <option value = "BGN">BGN</option>
-                    <option value = "EUR">EUR</option>
-                    <option value = "USD" selected>USD</option>
-                    <option value = "MMK">MMK</option>
-                    <option value = "THB">THI</option>
-                </select>
-
-                <input type = "number" name = "amount-one" id = "amount-one" class = "" placeholder="0" value = "1" />
-            </div>
-
-            <div class = "swap-rate-container">
-                <button id = "swap" class = "btn">Swap</button>
-                <div id = "rate" class = "rate">1 USD = 1650 MMK</div>
-            </div>
-
-            <div class = "currency">
-                <select id = "currency-two">
-                    <option value = "AED">AED</option>
-                    <option value = "ARS">ARS</option>
-                    <option value = "AUD">AUD</option>
-                    <option value = "BGN">BGN</option>
-                    <option value = "EUR" selected>EUR</option>
-                    <option value = "USD">USD</option>
-                    <option value = "MMK">MMK</option>
-                    <option value = "THB">THI</option>
-                </select>
-
-                <input type = "number" name = "amount-two" id = "amount-two" class = "" placeholder="0" value = "1" />
-            </div>
-
+        <div class="currency">
+            <label for="currency-one">From</label>
+            <select id="currency-one" aria-label="Source currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+                <option value="MMK">MMK</option>
+            </select>
+            <input type="number" id="amount-one" min="0" step="any" inputmode="decimal" value="1" aria-label="Source amount" />
         </div>
 
-        <script src = "js/app.js" type = "text/javascript"></script>
-    </body>
+        <div class="swap-rate-container">
+            <button id="swap" class="btn" type="button" aria-label="Swap currencies">Swap</button>
+            <div id="rate" class="rate" aria-live="polite">Loading current rate…</div>
+        </div>
+
+        <div class="currency">
+            <label for="currency-two">To</label>
+            <select id="currency-two" aria-label="Target currency">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="JPY">JPY</option>
+                <option value="MMK">MMK</option>
+            </select>
+            <input type="number" id="amount-two" min="0" step="any" inputmode="decimal" value="" aria-label="Converted amount" />
+        </div>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <p class="attribution"><a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">Rates by Exchange Rate API</a></p>
+    </main>
+    <script src="js/app.js"></script>
+</body>
 </html>

@@ -1,110 +1,99 @@
-:root{
-    --primary-color: green;
+:root {
+    --primary-color: #18743c;
+    --primary-dark: #10582d;
+    --surface: #ffffff;
+    --text: #17211b;
+    --muted: #607067;
+    --border: #ccd7d0;
+    --error: #b42318;
 }
 
-*{
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body{
-    background-color: #f4f4f4;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
+body {
+    min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+    background: #f2f7f4;
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.money-img{
-    width: 150px;
+.calculator {
+    width: min(100%, 560px);
+    padding: clamp(24px, 6vw, 48px);
+    text-align: center;
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 16px 45px rgba(18, 70, 40, 0.12);
 }
 
-h1{
-    color: var(--primary-color);
-}
+.money-img { width: 120px; }
+h1 { margin: 12px 0 6px; color: var(--primary-color); }
+.calculator > p { color: var(--muted); }
 
-.currency{
-    padding: 40px 0;
-    display: flex;
-    justify-content: space-between;
+.currency {
+    display: grid;
+    grid-template-columns: auto 110px minmax(120px, 1fr);
+    gap: 12px;
     align-items: center;
-
+    padding: 28px 0;
 }
 
-.currency select {
-    font-size: 16px;
-    padding: 10px 20px 10px 10px;
-    border: 1px solid #dedede; 
+.currency label { font-weight: 650; text-align: left; }
 
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-
-    background: transparent;
-    background-image: url('../img/downarrow.png');
-    background-repeat: no-repeat;
-    background-size: 12px;
-    background-position: right;
-    background-position-X: 90%;
+select, input, .btn {
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
 }
 
-.btn{
-    background-color: var(--primary-color);
-    color: #fff;
+select { padding: 8px 32px 8px 10px; background: var(--surface); }
 
-    font-size: 20px;
-    padding: 5px 12px;
-    border: none;
-    border-radius: 5px;
-
-
-}
-
-.btn:focus, input:focus, select:focus{
-    outline: 0;
-}
-
-.btn:active{
-    transform: scale(0.95);
-}
-
-.swap-rate-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.rate{
-    font-size: 20px;
-    padding: 0 10px;
-}
-
-.currency input{
-
-    font-size: 30px;
-    border: none;
-    background: transparent;
+input {
+    width: 100%;
+    padding: 8px 12px;
+    background: #f9fbfa;
+    font-size: 1.35rem;
     text-align: right;
-    
 }
 
-@media (max-width:600px){
-    .currency input{
-        width: 200px;
-    }
+.btn {
+    padding: 8px 16px;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
 }
 
+.btn:hover { background: var(--primary-dark); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { cursor: wait; opacity: 0.65; }
 
+button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid rgba(24, 116, 60, 0.3);
+    outline-offset: 2px;
+}
 
+.swap-rate-container {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.rate { font-weight: 650; color: var(--primary-color); }
+.status { min-height: 1.5em; margin: 4px 0; font-size: 0.9rem; }
+.status.error { color: var(--error); }
+.attribution { margin-bottom: 0; font-size: 0.78rem; }
+.attribution a { color: var(--muted); }
 
-
-
-
-
-
-
+@media (max-width: 520px) {
+    body { padding: 12px; }
+    .currency { grid-template-columns: 1fr 1fr; }
+    .currency label { grid-column: 1 / -1; }
+    .swap-rate-container { align-items: stretch; flex-direction: column; }
+}
